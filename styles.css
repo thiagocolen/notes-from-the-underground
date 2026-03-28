@@ -1,8 +1,62 @@
 /*
 
 This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
+available in the Obsidian UI when your plugin is enabled.
 
 */
+
+.csv-view-container {
+    overflow: auto;
+    padding: 20px;
+}
+
+.csv-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 600px;
+}
+
+.csv-table th, .csv-table td {
+    border: 1px solid var(--background-modifier-border);
+    padding: 8px;
+    text-align: left;
+}
+
+.csv-table th {
+    background-color: var(--background-secondary);
+    position: sticky;
+    top: 0;
+}
+
+.csv-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.csv-header-text {
+    font-weight: bold;
+}
+
+.csv-sort-button {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--background-modifier-border);
+    padding: 2px 5px;
+    font-size: 10px;
+}
+
+.csv-sort-button:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.csv-filter-input {
+    width: 100%;
+    font-size: 12px;
+    padding: 4px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}

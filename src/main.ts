@@ -1,5 +1,6 @@
 import {App, Editor, MarkdownView, Modal, Notice, Plugin} from 'obsidian';
 import {DEFAULT_SETTINGS, MyPluginSettings, SampleSettingTab} from "./settings";
+import {CsvView, VIEW_TYPE_CSV} from "./CsvView";
 
 // Remember to rename these classes and interfaces!
 
@@ -8,6 +9,13 @@ export default class MyPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
+
+		this.registerView(
+			VIEW_TYPE_CSV,
+			(leaf) => new CsvView(leaf)
+		);
+
+		this.registerExtensions(["csv"], VIEW_TYPE_CSV);
 
 		// This creates an icon in the left ribbon.
 		this.addRibbonIcon('dice', 'Sample', (evt: MouseEvent) => {
