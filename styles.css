@@ -60,3 +60,82 @@ available in the Obsidian UI when your plugin is enabled.
     background-color: var(--background-primary);
     color: var(--text-normal);
 }
+
+.notes-table-container {
+    overflow: auto;
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.notes-table-totalization {
+    background-color: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.notes-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.notes-table th, .notes-table td {
+    border: 1px solid var(--background-modifier-border);
+    padding: 8px;
+    text-align: left;
+}
+
+.notes-table th {
+    background-color: var(--background-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.clickable-header {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+}
+
+.clickable-header:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.notes-filter-input {
+    width: 100%;
+    margin-top: 4px;
+    font-size: 12px;
+    padding: 4px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}
+
+.sort-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.internal-link {
+    color: var(--text-accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.internal-link:hover {
+    text-decoration: underline;
+}

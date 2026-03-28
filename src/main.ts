@@ -1,107 +1,47 @@
-import {App, Editor, MarkdownView, Modal, Notice, Plugin} from 'obsidian';
-import {DEFAULT_SETTINGS, MyPluginSettings, SampleSettingTab} from "./settings";
-import {CsvView, VIEW_TYPE_CSV} from "./CsvView";
+import { Plugin, WorkspaceLeaf } from 'obsidian';
+import { NotesTableView, VIEW_TYPE_NOTES_TABLE } from "./NotesTableView";
 
-// Remember to rename these classes and interfaces!
-
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+export default class NotesFromTheUndergroundPlugin extends Plugin {
 
 	async onload() {
-		await this.loadSettings();
-
 		this.registerView(
-			VIEW_TYPE_CSV,
-			(leaf) => new CsvView(leaf)
+			VIEW_TYPE_NOTES_TABLE,
+			(leaf) => new NotesTableView(leaf)
 		);
 
-		this.registerExtensions(["csv"], VIEW_TYPE_CSV);
-
-		// This creates an icon in the left ribbon.
-		this.addRibbonIcon('dice', 'Sample', (evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
+		// Add ribbon icon for Notes Table
+		this.addRibbonIcon('notepad-text-dashed', 'Notes from the underground', () => {
+			this.activateNotesTableView();
 		});
 
-		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-		const statusBarItemEl = this.addStatusBarItem();
-		statusBarItemEl.setText('Status bar text');
-
-		// This adds a simple command that can be triggered anywhere
 		this.addCommand({
-			id: 'open-modal-simple',
-			name: 'Open modal (simple)',
+			id: 'open-notes-table',
+			name: 'Notes from the underground',
 			callback: () => {
-				new SampleModal(this.app).open();
+				this.activateNotesTableView();
 			}
 		});
-		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'replace-selected',
-			name: 'Replace selected content',
-			editorCallback: (editor: Editor, view: MarkdownView) => {
-				editor.replaceSelection('Sample editor command');
-			}
-		});
-		// This adds a complex command that can check whether the current state of the app allows execution of the command
-		this.addCommand({
-			id: 'open-modal-complex',
-			name: 'Open modal (complex)',
-			checkCallback: (checking: boolean) => {
-				// Conditions to check
-				const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (markdownView) {
-					// If checking is true, we're simply "checking" if the command can be run.
-					// If checking is false, then we want to actually perform the operation.
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
-
-					// This command will only show up in Command Palette when the check function returns true
-					return true;
-				}
-				return false;
-			}
-		});
-
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
-
-		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
-		// Using this function will automatically remove the event listener when this plugin is disabled.
-		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
-			new Notice("Click");
-		});
-
-		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
-
 	}
 
 	onunload() {
 	}
 
-	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<MyPluginSettings>);
-	}
+	async activateNotesTableView() {
+		const { workspace } = this.app;
 
-	async saveSettings() {
-		await this.saveData(this.settings);
-	}
-}
+		let leaf: WorkspaceLeaf | undefined = undefined;
+		const leaves = workspace.getLeavesOfType(VIEW_TYPE_NOTES_TABLE);
 
-class SampleModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
+		if (leaves.length > 0) {
+			// A leaf with our view already exists, use that
+			leaf = leaves[0];
+		} else {
+			// Our view could not be found in the workspace, create a new leaf
+			leaf = workspace.getLeaf(true);
+			await leaf.setViewState({ type: VIEW_TYPE_NOTES_TABLE, active: true });
+		}
 
-	onOpen() {
-		let {contentEl} = this;
-		contentEl.setText('Woah!');
-	}
-
-	onClose() {
-		const {contentEl} = this;
-		contentEl.empty();
+		// "Reveal" the leaf in case it is in a collapsed sidebar
+		if (leaf) workspace.revealLeaf(leaf);
 	}
 }
