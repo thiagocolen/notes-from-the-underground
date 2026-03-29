@@ -3,7 +3,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 
 const FILES_TO_COPY = ['main.js', 'manifest.json', 'styles.css'];
-const DESTINATION = "D:\\GDrives\\thiago.souzacolen\\SinkholeFolder\\.obsidian\\plugins\\sample-plugin";
+const DESTINATION = "D:\\GDrives\\thiago.souzacolen\\SinkholeFolder\\.obsidian\\plugins\\notes-from-the-underground";
 
 function deploy() {
     try {

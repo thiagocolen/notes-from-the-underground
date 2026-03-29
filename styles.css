@@ -62,20 +62,77 @@ available in the Obsidian UI when your plugin is enabled.
 }
 
 .notes-table-container {
-    overflow: auto;
+    overflow: hidden;
     padding: 10px;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
+.notes-table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
 .notes-table-totalization {
     background-color: var(--background-secondary);
     border: 1px solid var(--background-modifier-border);
     padding: 10px;
-    margin-bottom: 10px;
     border-radius: 4px;
     font-size: 1.1em;
+    flex-grow: 1;
+}
+
+.notes-settings-toggle {
+    cursor: pointer;
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.notes-settings-toggle:hover {
+    background-color: var(--interactive-accent-hover);
+}
+
+.notes-table-settings {
+    background-color: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.settings-section h4 {
+    margin: 0 0 10px 0;
+}
+
+.visibility-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.visibility-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    background-color: var(--background-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--background-modifier-border);
+}
+
+.notes-table-wrapper {
+    flex-grow: 1;
+    overflow: auto;
+    border: 1px solid var(--background-modifier-border);
 }
 
 .notes-table {
@@ -87,6 +144,9 @@ available in the Obsidian UI when your plugin is enabled.
     border: 1px solid var(--background-modifier-border);
     padding: 8px;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .notes-table th {
@@ -96,22 +156,68 @@ available in the Obsidian UI when your plugin is enabled.
     z-index: 10;
 }
 
-.clickable-header {
-    cursor: pointer;
-    font-weight: bold;
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.header-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 4px;
 }
 
-.clickable-header:hover {
+.clickable-header {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-grow: 1;
+}
+
+.column-move-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.column-move-controls button {
+    padding: 2px 4px;
+    font-size: 10px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--background-modifier-border);
+}
+
+.column-move-controls button:hover {
     background-color: var(--background-modifier-hover);
+}
+
+.resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    cursor: col-resize;
+    user-select: none;
+    touch-action: none;
+}
+
+.resizer.is-resizing {
+    background: var(--interactive-accent);
+    width: 2px;
+}
+
+.resizer:hover {
+    background: var(--interactive-accent);
 }
 
 .notes-filter-input {
     width: 100%;
-    margin-top: 4px;
     font-size: 12px;
     padding: 4px;
     border: 1px solid var(--background-modifier-border);
