@@ -1,7 +1,7 @@
 {
 	"id": "notes-from-the-underground",
 	"name": "Notes From The Underground",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"minAppVersion": "1.7.2",
 	"description": "Displays your vault's notes as a sortable, filterable, resizable table, pulling structured fields (Priority, Progress, Tags, Description, Link, Date) straight out of each note's content.",
 	"author": "Thiago Colen",
