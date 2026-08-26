@@ -1,5 +1,7 @@
 # Notes From The Underground
 
+![Notes From The Underground](./assets/screenshot.jpg)
+
 Notes From The Underground is an [Obsidian](https://obsidian.md) plugin that replaces scattered notes with a single sortable, filterable table. It scans your vault's markdown files and pulls structured fields — Priority, Progress, Tags, Description, Link, and Date — straight out of each note's content.
 
 ## Installation
