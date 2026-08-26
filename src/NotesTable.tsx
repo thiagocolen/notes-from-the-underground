@@ -77,7 +77,7 @@ export const NotesTable: React.FC<NotesTableProps> = ({ app, data }) => {
                     <a 
                         className="internal-link"
                         onClick={() => {
-                            app.workspace.getLeaf().openFile(note.file);
+                            void app.workspace.getLeaf().openFile(note.file);
                         }}
                     >
                         {info.getValue()}

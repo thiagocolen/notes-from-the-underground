@@ -1,11 +1,10 @@
 {
 	"id": "notes-from-the-underground",
 	"name": "Notes From The Underground",
-	"version": "1.1.0",
-	"minAppVersion": "0.15.0",
-	"description": "A plugin to view your notes in a table format.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"version": "1.1.1",
+	"minAppVersion": "1.7.2",
+	"description": "Displays your vault's notes as a sortable, filterable, resizable table, pulling structured fields (Priority, Progress, Tags, Description, Link, Date) straight out of each note's content.",
+	"author": "Thiago Colen",
+	"authorUrl": "https://github.com/thiagocolen",
 	"isDesktopOnly": false
 }

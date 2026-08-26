@@ -44,7 +44,7 @@ export function parseNote(file: TFile, content: string): NoteData {
                     }
                     noteData.tags = tagsValue.split(',').map(t => t.trim()).filter(t => t !== '');
                 } else {
-                    (noteData as any)[key] = valueCandidate;
+                    noteData[key] = valueCandidate;
                 }
                 lastPropertyLine = i;
             }

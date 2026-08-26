@@ -13,15 +13,15 @@ export default class NotesFromTheUndergroundPlugin extends Plugin {
 			"notepad-text-dashed",
 			"Notes from the underground",
 			() => {
-				this.activateNotesTableView();
+				void this.activateNotesTableView();
 			},
 		);
 
 		this.addCommand({
 			id: "open-notes-table",
-			name: "Notes from the underground",
+			name: "Open notes table",
 			callback: () => {
-				this.activateNotesTableView();
+				void this.activateNotesTableView();
 			},
 		});
 	}
@@ -47,6 +47,6 @@ export default class NotesFromTheUndergroundPlugin extends Plugin {
 		}
 
 		// "Reveal" the leaf in case it is in a collapsed sidebar
-		if (leaf) workspace.revealLeaf(leaf);
+		if (leaf) void workspace.revealLeaf(leaf);
 	}
 }
